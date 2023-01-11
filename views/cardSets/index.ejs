@@ -1,0 +1,23 @@
+<% layout('layouts/boilerplate') %>
+<h1>All Card Sets</h1>
+<% for (let cardSet of cardSets) {%>
+    <div class="card mb-3">
+        <div class="row">
+            <div class="col-md-8">
+                <div class="card-body">
+                    <h5 class="card-title">
+                        <%= cardSet.title %>
+                    </h5>
+                    <p class="card-text">
+                        <%= cardSet.description %>
+                    </p>
+                    <a class="btn btn-primary" href="/cardSets/<%= cardSet._id %>">View <%= cardSet.title %></a>
+                </div>
+            </div>
+        </div>
+    </div>
+<% }%>
+
+<script>
+    const cardSets = { features: <%- JSON.stringify(cardSets) %>}
+</script>

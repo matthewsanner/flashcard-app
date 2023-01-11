@@ -1,0 +1,64 @@
+<% layout('layouts/boilerplate') %>
+<link rel="stylesheet" href="/stylesheets/stars.css">
+
+<div class="row">
+    <div class="col-6">
+        <div class="card mb-3">            
+            <div class="card-body">
+                <h5 class="card-title"><%= cardSet.title %></h5>
+                <p class="card-text"><%= cardSet.description %></p>
+            </div>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item text">Submitted by <%= cardSet.author.username %></li>
+            </ul>
+            <% if (currentUser && cardSet.author.equals(currentUser._id)) { %>
+            <div class="card-body">
+                <a class="card-link btn btn-info" href="/cardSets/<%=cardSet._id%>/edit">Edit</a>
+                <form class="d-inline" action="/cardSets/<%= cardSet._id%>?_method=DELETE" method="POST">
+                    <button class="btn btn-danger">Delete</button>
+                </form>
+            </div>
+            <% } %>
+        </div>
+        <div class="card mb-3">
+            <div class="card-body">
+                <% if(currentUser && cardSet.author.equals(currentUser._id)) { %>
+                    <h5>Create a card</h5>
+                    <!-- tell form not to html validate but instead use bootstrap validation because it's prettier -->
+                    <form class="mb-3 validated-form" action="/cardSets/<%= cardSet._id %>/cards" method="POST" novalidate>
+                        <div class="mb-3">
+                            <label class="form-label" for="front">Front:</label>
+                            <input class="form-control" name="card[front]" id="front" required>
+                            <label class="form-label" for="back">Back:</label>
+                            <input class="form-control" name="card[back]" id="back" required>
+                            <div class="valid-feedback">
+                                Looks good!
+                            </div>
+                            <button class="btn btn-success mt-3">Submit</button>
+                        </div>
+                    </form>
+                <% } %>
+            </div>
+        </div>
+    </div>
+    <div class="col-6">
+        <% for(let card of cardSet.cards) { %>
+        <div class="card mb-3">
+            <div class="card-body">
+                <p class="card-text">Front: <%= card.front %></p>
+                <p class="card-text">Back: <%= card.back %></p>
+                <!-- set this to cardSet.author instead of card.author because we don't need to track card.author and it should always be cardSet.author that is authorized to edit the cardSet and the cards it contains -->
+                <% if (currentUser && cardSet.author.equals(currentUser._id)) { %>
+                <form action="/cardSets/<%=cardSet._id%>/cards/<%=card._id%>?_method=DELETE" method="POST">
+                    <button class="btn btn-sm btn-danger">Delete</button>
+                </form>
+                <% } %>
+            </div>
+        </div>
+        <% } %>
+    </div>
+</div>
+
+<script>
+    const cardSet = <% - JSON.stringify(cardSet) %>
+</script>
