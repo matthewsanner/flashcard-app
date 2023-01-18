@@ -28,15 +28,15 @@ module.exports.renderLogin = (req, res) => {
 
 module.exports.login = (req, res) => {
     req.flash('success', 'Welcome back!');
-    const redirectUrl = req.session.returnTo || '/cardSets';
-    delete req.session.returnTo;
+    const redirectUrl = res.locals.returnTo || '/cardSets';
     res.redirect(redirectUrl);
 }
 
 module.exports.logout = (req, res) => {
-    req.logout(err => {
+    req.logout(/*{ keepSessionInfo: true }, */err => {
         if (err) return next(err);
         req.flash('success', 'Logged out!');
-        res.redirect('/cardSets');
+        const redirectUrl = res.locals.returnTo || '/cardSets';
+        res.redirect(redirectUrl);
     })
 }
