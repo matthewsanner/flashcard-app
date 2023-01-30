@@ -22,36 +22,40 @@
         <div class="card mb-3">
             <div class="card-body">
                 <!-- Here goes the flashcard functionality -->
-                <% for (let card of cardSet.cards) { %>
-                  <div class="flashcard">
-                    <div class="flashcard-front">
-                      <%= card.front %>
-                    </div>
-                    <div class="flashcard-back">
-                      <%= card.back %>
-                    </div>
-                  </div>
-                <% } %>
-
+                <div id="flashcard-container">
+                    <% cardSet.cards.forEach(function(card) {%>
+                        <div class="flashcard">
+                            <div class="flashcard-text front">
+                                <%= card.front %>
+                            </div>
+                            <div class="flashcard-text back hidden">
+                                <%= card.back %>
+                            </div>
+                        </div>
+                    <% }); %>
+                </div>
+                <div id="button-holder">
+                    <button class="btn btn-success" id="flashcard-backward">Previous card</button>
+                    <button class="btn btn-success" id="flashcard-forward">Next card</button>
+                </div>
             </div>
         </div>
     </div>
     <% if(currentUser && cardSet.author.equals(currentUser._id)) { %>
     <div class="col-lg-6">
         <% for(let card of cardSet.cards) { %>
-        <div class="card mb-3">
+        <div class="card mb-3 card-display">
             <div class="card-body">
-                <p class="card-text">Front: <%= card.front %></p>
-                <p class="card-text">Back: <%= card.back %></p>
+                <span class="card-text">Front: <%= card.front %></span>
+                <span class="card-text">Back: <%= card.back %></span>
                 <!-- add edit functionality -->
-                <form action="/cardSets/<%=cardSet._id%>/cards/<%=card._id%>?_method=DELETE" method="POST">
+                <form class="delete-button" action="/cardSets/<%=cardSet._id%>/cards/<%=card._id%>?_method=DELETE" method="POST">
                     <button class="btn btn-sm btn-danger">Delete</button>
                 </form>
             </div>
         </div>
         <% } %>
         <div class="card mb-3">
-            <div class="card-body" id="card-forms"></div>
             <div class="card-body">
                 <button class="btn btn-success" id="add-card-btn">Create a card</button>
             </div>
@@ -63,4 +67,5 @@
 <script>
     const cardSet = <% - JSON.stringify(cardSet) %>
 </script>
-<script src="/javascripts/addNewCardForm.js"></script>
+<!-- <script src="/javascripts/addNewCardForm.js"></script> -->
+<script src="/javascripts/flashcard.js"></script>
