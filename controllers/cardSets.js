@@ -25,6 +25,7 @@ module.exports.showCardSet = async (req, res) => {
         // populate: { path: 'author' }
     })
         .populate('author');
+    cardSet.cardCount = cardSet.cards.length;
     if (!cardSet) {
         req.flash('error', 'Can not find that card set!');
         return res.redirect('/cardSets');

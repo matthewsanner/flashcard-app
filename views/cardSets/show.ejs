@@ -5,7 +5,8 @@
         <div class="card mb-3">            
             <div class="card-body">
                 <h5 class="card-title"><%= cardSet.title %></h5>
-                <p class="card-text"><%= cardSet.description %></p>
+                <div class="card-text"><%= cardSet.description %></div>
+                <div>Number of cards: <%= cardSet.cardCount %></div>
             </div>
             <ul class="list-group list-group-flush">
                 <li class="list-group-item text">Submitted by <%= cardSet.author.username %></li>
@@ -59,7 +60,6 @@
                     </div>
                     <button class="btn btn-sm btn-info">Update card</button>
                 </form>
-                    <!-- start working here- what's wrong with this action? page not found -->
                 <form class="card-info" action="/cardSets/<%=cardSet._id%>/cards/<%=card._id%>?_method=DELETE" method="POST">
                     <button class="btn btn-sm btn-danger">Delete</button>
                 </form>

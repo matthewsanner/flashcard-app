@@ -1,7 +1,11 @@
 const CardSet = require('../models/cardSet');
 
 module.exports.showAccount = async (req, res) => {
-    const cardSets = await CardSet.find({ user: req.user._id })
+    const cardSets = await CardSet.find({ author: req.user._id })
+        .populate('cards');
+    cardSets.forEach(cardSet => {
+        cardSet.cardCount = cardSet.cards.length;
+    });
     res.render('account/show', { cardSets });
     // CardSet.find({ user: req.user._id }, (err, cardSets) => {
     //     if (err) {

@@ -1,13 +1,19 @@
 <% layout('layouts/boilerplate') %>
+<div class="row">
+    <h2>Your card sets:</h2>
+</div>
 <% cardSets.forEach(function(cardSet) {%>
-    <div class="cardset">
-        <div class="cardset-text">
-            <%= cardSet.title %>
-        </div>
-        <div class="cardset-text">
-            <%= cardSet.description %>
+<div class="row">
+    <div class="col-lg-6">
+        <div class="card mb-3">
+            <div class="card-body">
+                <div><a href="/cardSets/<%=cardSet._id%>"><%= cardSet.title %></a></div>
+                <div><%= cardSet.description %></div>
+                <div>Number of cards: <%= cardSet.cardCount %></div>
+            </div>
         </div>
     </div>
+</div>
 <% }); %>
 
 <script>
