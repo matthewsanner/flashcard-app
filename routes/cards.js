@@ -12,4 +12,6 @@ router.post('/', isLoggedIn, isAuthor, validateCard, wrapAsync(cards.createCard)
 
 router.delete('/:cardId', isLoggedIn, isAuthor, wrapAsync(cards.deleteCard))
 
+router.put('/:cardId', isLoggedIn, isAuthor, validateCard, wrapAsync(cards.editCard))
+
 module.exports = router;

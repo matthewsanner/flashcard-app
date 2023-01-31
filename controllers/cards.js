@@ -20,3 +20,13 @@ module.exports.deleteCard = async (req, res) => {
     req.flash('success', 'Successfully deleted card!')
     res.redirect(`/cardSets/${id}`);
 }
+
+// new section for edit card
+module.exports.editCard = async (req, res) => {
+    const { id, cardId } = req.params;
+    const cardSet = await CardSet.findById(id);
+    const card = await Card.findByIdAndUpdate(cardId, { ...req.body.card });
+    await card.save()
+    req.flash('success', 'Successfully updated card!');
+    res.redirect(`/cardSets/${cardSet._id}`);
+}

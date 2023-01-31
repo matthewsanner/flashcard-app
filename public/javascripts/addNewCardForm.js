@@ -1,3 +1,5 @@
+// NOT USING THIS JS ANYMORE, WENT WITH JUST A SINGLE FORM THAT USES A ROUTE WHICH RELOADS THE PAGE
+
 let addCardBtn = document.getElementById('add-card-btn');
 addCardBtn.addEventListener('click', addNewCardForm);
 let cardSetId = cardSet._id;
