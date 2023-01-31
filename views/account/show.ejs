@@ -1,0 +1,15 @@
+<% layout('layouts/boilerplate') %>
+<% cardSets.forEach(function(cardSet) {%>
+    <div class="cardset">
+        <div class="cardset-text">
+            <%= cardSet.title %>
+        </div>
+        <div class="cardset-text">
+            <%= cardSet.description %>
+        </div>
+    </div>
+<% }); %>
+
+<script>
+    const cardSets = <%- JSON.stringify(cardSets) %>
+</script>

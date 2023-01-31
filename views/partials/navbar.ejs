@@ -16,6 +16,11 @@
                 <li class="nav-item">
                     <a class="nav-link" href="/cardSets/new">New Card Set</a>
                 </li>
+                <% if(currentUser) {%>
+                <li>
+                    <a class="nav-link" href="/account">Account</a>
+                </li>
+                <% } %>
             </ul>
             <ul class="navbar-nav ms-auto">
                 <% if(!currentUser) {%>

@@ -22,6 +22,7 @@ const mongoSanitize = require('express-mongo-sanitize');
 const userRoutes = require('./routes/users');
 const cardSetRoutes = require('./routes/cardSets');
 const cardRoutes = require('./routes/cards');
+const accountRoutes = require('./routes/account')
 
 const MongoStore = require('connect-mongo');
 
@@ -139,6 +140,7 @@ app.use((req, res, next) => {
 app.use('/', userRoutes)
 app.use('/cardSets', cardSetRoutes);
 app.use('/cardSets/:id/cards', cardRoutes);
+app.use('/account', accountRoutes)
 
 app.get('/', (req, res) => {
     res.render('home')
