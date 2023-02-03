@@ -1,30 +1,69 @@
 <% layout('layouts/boilerplate') %>
-<div class="row">
+<div class="row justify-content-center">
     <h1 class="text-center">
         Edit Card Set
     </h1>
-    <div class="col-md-6 offset-md-3">
+    <div class="col-md-6">
         <!-- need to change form type to enctype="multipart/form-data" if you want to include image upload -->
         <form action="/cardSets/<%= cardSet._id%>?_method=PUT" method="POST" novalidate class="validated-form">
         <div class="mb-3">
             <label class="form-label" for="title">Title</label>
             <input class="form-control" type="text" id="title" name="cardSet[title]"
             value="<%= cardSet.title%>" required>
-            <div class="valid-feedback">
+            <!-- <div class="valid-feedback">
                 Looks good!
-            </div>
+            </div> -->
         </div>
         <div class="mb-3">
             <label class="form-label" for="description">Description</label>
             <input class="form-control" type="text" id="description" name="cardSet[description]" value="<%=cardSet.description%>" required>
-            <div class="valid-feedback">
+            <!-- <div class="valid-feedback">
                 Looks good!
-            </div>
+            </div> -->
         </div>
         <div class="mb-3">
-            <button class="btn btn-info">Update Card Set</button>
+            <button class="btn btn-info">Update Card Info</button>
+            <a class="btn btn-success ms-2" href="/cardSets/<%= cardSet._id%>">Back to Card Set</a>
         </div>
     </form>
-    <a href="/cardSets/<%= cardSet._id%>">Back to Card Set</a>
+    
+    </div>
+    <div class="row justify-content-center">
+        <% if(currentUser && cardSet.author.equals(currentUser._id)) { %>
+            <% for(let card of cardSet.cards) { %>
+            <div class="card col-lg-10 mb-3 p-2">
+                <div class="row justify-content-center">
+                    <div class="col-auto">
+                        <form action="/cardSets/<%= cardSet._id%>/cards/<%=card._id%>?_method=PUT" method="POST" novalidate class="validated-form" id="update-form">
+                        <label class="col-form-label" for="front">Front:</label>
+                    </div>
+                    <div class="col-3">
+                        <input class="form-control" type="text" id="front" name="card[front]" value="<%=card.front%>" required>
+                        <!-- <div class="valid-feedback">
+                            Looks good!
+                        </div> -->
+                    </div>
+                    <div class="col-auto">
+                        <label class="col-form-label" for="back">Back:</label>
+                    </div>
+                    <div class="col-3">
+                        <input class="form-control" type="text" id="back" name="card[back]" value="<%=card.back%>" required>
+                        <!-- <div class="valid-feedback">
+                            Looks good!
+                        </div> -->
+                    </div>
+                    <div class="col-auto">
+                        <button class="btn btn-info">Update card</button>
+                        </form>
+                    </div>
+                    <div class="col-auto">
+                        <form action="/cardSets/<%=cardSet._id%>/cards/<%=card._id%>?_method=DELETE" method="POST" id="delete-form">
+                        <button class="btn btn-danger">Delete</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <% } %>
+        <% } %>
     </div>
 </div>

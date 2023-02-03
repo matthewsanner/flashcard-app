@@ -2,14 +2,15 @@ const CardSet = require('../models/cardSet');
 const Card = require('../models/card');
 
 module.exports.createCard = async (req, res) => {
-    const cardSet = await CardSet.findById(req.params.id);
+    const { id } = req.params
+    const cardSet = await CardSet.findById(id);
     const card = new Card(req.body.card);
     // card.author = req.user._id;
     cardSet.cards.push(card);
     await card.save();
     await cardSet.save();
     req.flash('success', 'Created new card!');
-    res.redirect(`/cardSets/${cardSet._id}`)
+    res.redirect(`/cardSets/${id}`)
 }
 
 module.exports.deleteCard = async (req, res) => {
@@ -18,15 +19,15 @@ module.exports.deleteCard = async (req, res) => {
     await CardSet.findByIdAndUpdate(id, { $pull: { cards: cardId } })
     await Card.findByIdAndDelete(cardId);
     req.flash('success', 'Successfully deleted card!')
-    res.redirect(`/cardSets/${id}`);
+    res.redirect(`/cardSets/${id}/edit`);
 }
 
 // new section for edit card
 module.exports.editCard = async (req, res) => {
     const { id, cardId } = req.params;
-    const cardSet = await CardSet.findById(id);
+    await CardSet.findById(id);
     const card = await Card.findByIdAndUpdate(cardId, { ...req.body.card });
     await card.save()
     req.flash('success', 'Successfully updated card!');
-    res.redirect(`/cardSets/${cardSet._id}`);
+    res.redirect(`/cardSets/${id}/edit`);
 }
