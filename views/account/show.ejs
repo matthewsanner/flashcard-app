@@ -7,9 +7,13 @@
     <div class="col-lg-6">
         <div class="card mb-3">
             <div class="card-body">
-                <div><a href="/cardSets/<%=cardSet._id%>"><%= cardSet.title %></a></div>
-                <div><%= cardSet.description %></div>
-                <div>Number of cards: <%= cardSet.cardCount %></div>
+                <h5 class="card-title">
+                    <%= cardSet.title %>
+                </h5>
+                <p class="card-text">
+                    <%= cardSet.description %>
+                </p>
+                <a class="btn btn-primary" href="/cardSets/<%= cardSet._id %>">View <%= cardSet.title %></a>
             </div>
         </div>
     </div>

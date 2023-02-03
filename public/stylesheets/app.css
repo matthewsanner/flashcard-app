@@ -11,26 +11,18 @@
 
 .flashcard-text {
     cursor: pointer;
-    font-size: 2em;
+    font-size: 2.7em;
 }
 
-#button-holder {
-    display: flex;
-    justify-content: center;
+.neg-margin {
+    margin: -6px;
 }
 
-#flashcard-backward {
-    margin: 3px;
+#update-form {
+    display: inline-flex;
 }
 
-#flashcard-forward {
-    margin: 3px;
-}
-
-.card-display {
-    justify-content: space-between;
-}
-
-.delete-button {
-    display: inline-block;
+#delete-form {
+    display: inline;
+    margin-left: 12px;
 }

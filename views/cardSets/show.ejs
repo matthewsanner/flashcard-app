@@ -1,86 +1,110 @@
 <% layout('layouts/boilerplate') %>
-
-<div class="row">
-    <div class="col-lg-6">
-        <div class="card mb-3">            
-            <div class="card-body">
-                <h5 class="card-title"><%= cardSet.title %></h5>
-                <div class="card-text"><%= cardSet.description %></div>
-                <div>Number of cards: <%= cardSet.cardCount %></div>
+<div class="container-fluid">
+    <div class="row justify-content-center">
+        <div class="col-lg-5">
+            <div class="card mb-3">
+                <div class="card-body">
+                    <div id="flashcard-container">
+                        <% cardSet.cards.forEach(function(card) {%>
+                            <div class="flashcard">
+                                <div class="flashcard-text front">
+                                    <%= card.front %>
+                                </div>
+                                <div class="flashcard-text back hidden">
+                                    <%= card.back %>
+                                </div>
+                            </div>
+                        <% }); %>
+                    </div>
+                    <div class="d-flex justify-content-center">
+                        <button class="btn btn-success m-1" id="flashcard-backward">Previous card</button>
+                        <button class="btn btn-success m-1" id="flashcard-forward">Next card</button>
+                    </div>
+                </div>
             </div>
-            <ul class="list-group list-group-flush">
-                <li class="list-group-item text">Submitted by <%= cardSet.author.username %></li>
-            </ul>
-            <% if (currentUser && cardSet.author.equals(currentUser._id)) { %>
-            <div class="card-body">
-                <a class="card-link btn btn-info" href="/cardSets/<%=cardSet._id%>/edit">Edit</a>
-                <form class="d-inline" action="/cardSets/<%= cardSet._id%>?_method=DELETE" method="POST">
-                    <button class="btn btn-danger">Delete</button>
-                </form>
+        </div>
+    </div>
+    <div class="row justify-content-center">
+        <div class="col-lg-8">
+            <div class="card mb-3">
+                <div class="card-body">
+                    <h5 class="card-title"><%= cardSet.title %></h5>
+                    <div class="card-text"><%= cardSet.description %></div>
+                    <div class="card-text">Number of cards: <%= cardSet.cardCount %></div>
+                </div>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item text">Submitted by <%= cardSet.author.username %></li>
+                </ul>
+                <% if (currentUser && cardSet.author.equals(currentUser._id)) { %>
+                <div class="card-body">
+                    <a class="card-link btn btn-info" href="/cardSets/<%=cardSet._id%>/edit">Edit</a>
+                    <form class="d-inline" action="/cardSets/<%= cardSet._id%>?_method=DELETE" method="POST">
+                        <button class="btn btn-danger">Delete</button>
+                    </form>
+                </div>
+                <% } %>
             </div>
+        </div>
+    </div>
+    <!-- having trouble with this section in particular making it responsive -->
+    <div class="row justify-content-center">
+        <div class="col-lg-8">
+            <% if(currentUser && cardSet.author.equals(currentUser._id)) { %>
+                <% for(let card of cardSet.cards) { %>
+                    <div class="card mb-3">
+                        <div class="card-body d-flex justify-content-center">
+                            <form action="/cardSets/<%= cardSet._id%>/cards/<%=card._id%>?_method=PUT" method="POST" novalidate class="validated-form align-items-center justify-content-center" id="update-form">
+                                <div class="col-auto neg-margin">
+                                    <label class="form-label" for="front">Front:</label>
+                                </div>
+                                <div class="col-auto neg-margin">
+                                    <input class="form-control" type="text" id="front" name="card[front]" value="<%=card.front%>" required>
+                                    <!-- <div class="valid-feedback">
+                                        Looks good!
+                                    </div> -->
+                                </div>
+                                <div class="col-auto neg-margin">
+                                    <label class="form-label" for="back">Back:</label>
+                                </div>
+                                <div class="col-auto neg-margin">
+                                    <input class="form-control" type="text" id="back" name="card[back]" value="<%=card.back%>" required>
+                                    <!-- <div class="valid-feedback">
+                                        Looks good!
+                                    </div> -->
+                                </div>
+                                <div class="col-auto">
+                                    <button class="btn btn-sm btn-info">Update card</button>
+                                </div>
+                            </form>
+                            <span>
+                                <form action="/cardSets/<%=cardSet._id%>/cards/<%=card._id%>?_method=DELETE" method="POST" id="delete-form">
+                                    <button class="btn btn-sm btn-danger">Delete</button>
+                                </form>
+                            </span>   
+                        </div>
+                    </div>
+                <% } %>
+                <div class="card mb-3">
+                    <div class="card-body">
+                        <form class="card-form validated-form row" action="/cardSets/<%=cardSet._id%>/cards" method="POST" novalidate>
+                            <input type="text" class="form-control col m-1" name="card[front]" placeholder="Front of Card">
+                            <input type="text" class="form-control col m-1" name="card[back]" placeholder="Back of Card">
+                            <button class="btn btn-success col-3 m-1" id="add-card-btn">Create a card</button>
+                        </form>
+                    </div>
+                </div>
             <% } %>
         </div>
-        <div class="card mb-3">
-            <div class="card-body">
-                <!-- Here goes the flashcard functionality -->
-                <div id="flashcard-container">
-                    <% cardSet.cards.forEach(function(card) {%>
-                        <div class="flashcard">
-                            <div class="flashcard-text front">
-                                <%= card.front %>
-                            </div>
-                            <div class="flashcard-text back hidden">
-                                <%= card.back %>
-                            </div>
-                        </div>
-                    <% }); %>
-                </div>
-                <div id="button-holder">
-                    <button class="btn btn-success" id="flashcard-backward">Previous card</button>
-                    <button class="btn btn-success" id="flashcard-forward">Next card</button>
-                </div>
-            </div>
-        </div>
     </div>
-    <% if(currentUser && cardSet.author.equals(currentUser._id)) { %>
-    <div class="col-lg-6">
-        <% for(let card of cardSet.cards) { %>
-        <div class="card mb-3 card-display">
-            <div class="card-body">
-                <form action="/cardSets/<%= cardSet._id%>/cards/<%=card._id%>?_method=PUT" method="POST" novalidate class="validated-form">
-                    <label class="form-label" for="front">Front:</label>
-                    <input class="form-control" type="text" id="front" name="card[front]" value="<%=card.front%>" required>
-                    <div class="valid-feedback">
-                        Looks good!
-                    </div>
-                    <label class="form-label" for="back">Back:</label>
-                    <input class="form-control" type="text" id="back" name="card[back]" value="<%=card.back%>" required>
-                    <div class="valid-feedback">
-                        Looks good!
-                    </div>
-                    <button class="btn btn-sm btn-info">Update card</button>
-                </form>
-                <form class="card-info" action="/cardSets/<%=cardSet._id%>/cards/<%=card._id%>?_method=DELETE" method="POST">
-                    <button class="btn btn-sm btn-danger">Delete</button>
-                </form>
-            </div>
-        </div>
-        <% } %>
-        <div class="card mb-3">
-            <div class="card-body">
-                <form class="card-form validated-form row" action="/cardSets/<%=cardSet._id%>/cards" method="POST" novalidate>
-                    <input type="text" class="form-control col m-1" name="card[front]" placeholder="Front of Card">
-                    <input type="text" class="form-control col m-1" name="card[back]" placeholder="Back of Card">
-                    <button class="btn btn-success col-3 m-1" id="add-card-btn">Create a card</button>
-                </form>
-            </div>
-        </div>
-    </div>
-    <% } %>
 </div>
 
+<!-- <script>
+    function removeValidatedForm() {
+        document.getElementById("update-delete-form").classList.remove("validated-form");
+    }
+</script> -->
 <script>
-    const cardSet = <%- JSON.stringify(cardSet) %>
+    const cardSet = <% - JSON.stringify(cardSet) %>
 </script>
 <!-- <script src="/javascripts/addNewCardForm.js"></script> -->
 <script src="/javascripts/flashcard.js"></script>
