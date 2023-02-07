@@ -1,4 +1,4 @@
-<nav class="navbar sticky-top navbar-expand-lg navbar-dark bg-dark">
+<nav class="navbar sticky-top navbar-expand-lg bg-dark" data-bs-theme="dark">
     <div class="container-fluid">
         <a class="navbar-brand" href="#">Flashcards</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
@@ -16,11 +16,6 @@
                 <li class="nav-item">
                     <a class="nav-link" href="/cardSets/new">New Card Set</a>
                 </li>
-                <% if(currentUser) {%>
-                <li>
-                    <a class="nav-link" href="/account">Account</a>
-                </li>
-                <% } %>
             </ul>
             <ul class="navbar-nav ms-auto">
                 <% if(!currentUser) {%>
@@ -31,6 +26,9 @@
                     <a class="nav-link" href="/register">Register</a>
                 </li>
                 <% } else { %>
+                <li class="nav-item">
+                    <a class="nav-link" href="/account">Account</a>
+                </li>
                 <li class="nav-item">
                     <a class="nav-link" href="/logout">Logout</a>
                 </li>

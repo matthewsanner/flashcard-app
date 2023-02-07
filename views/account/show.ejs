@@ -1,24 +1,26 @@
 <% layout('layouts/boilerplate') %>
-<div class="row">
-    <h2>Your card sets:</h2>
-</div>
-<% cardSets.forEach(function(cardSet) {%>
-<div class="row">
-    <div class="col-lg-6">
-        <div class="card mb-3">
-            <div class="card-body">
-                <h5 class="card-title">
-                    <%= cardSet.title %>
-                </h5>
-                <p class="card-text">
-                    <%= cardSet.description %>
-                </p>
-                <a class="btn btn-primary" href="/cardSets/<%= cardSet._id %>">View <%= cardSet.title %></a>
+<div class="container-fluid">
+    <div class="row">
+        <h2>Your Card Sets</h2>
+    </div>
+    <% cardSets.forEach(function(cardSet) {%>
+    <div class="row">
+        <div class="col-lg-6">
+            <div class="card mb-3">
+                <div class="card-body">
+                    <h5 class="card-title">
+                        <%= cardSet.title %>
+                    </h5>
+                    <p class="card-text">
+                        <%= cardSet.description %>
+                    </p>
+                    <a class="btn btn-primary" href="/cardSets/<%= cardSet._id %>">View Set</a>
+                </div>
             </div>
         </div>
     </div>
+    <% }); %>
 </div>
-<% }); %>
 
 <script>
     const cardSets = <%- JSON.stringify(cardSets) %>

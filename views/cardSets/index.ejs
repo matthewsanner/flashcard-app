@@ -1,9 +1,12 @@
 <% layout('layouts/boilerplate') %>
-<h1>All Card Sets</h1>
-<% for (let cardSet of cardSets) {%>
-    <div class="card mb-3">
-        <div class="row">
-            <div class="col-md-8">
+<div class="container-fluid">
+    <div class="row">
+        <h2>All Card Sets</h2>
+    </div>
+    <% for (let cardSet of cardSets) {%>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="card mb-3">
                 <div class="card-body">
                     <h5 class="card-title">
                         <%= cardSet.title %>
@@ -11,12 +14,13 @@
                     <p class="card-text">
                         <%= cardSet.description %>
                     </p>
-                    <a class="btn btn-primary" href="/cardSets/<%= cardSet._id %>">View <%= cardSet.title %></a>
+                    <a class="btn btn-primary" href="/cardSets/<%= cardSet._id %>">View Set</a>
                 </div>
             </div>
         </div>
     </div>
-<% }%>
+    <% }%>
+</div>
 
 <script>
     const cardSets = { features: <%- JSON.stringify(cardSets) %>}

@@ -1,8 +1,8 @@
 <% layout('layouts/boilerplate') %>
 <div class="row">
-    <h1 class="text-center">
+    <h2 class="text-center">
         New Card Set
-    </h1>
+    </h2>
     <div class="col-md-6 offset-md-3">
         <!-- need to change form type to enctype="multipart/form-data" if you want to include image upload -->
         <form action="/cardSets" method="POST" novalidate class="validated-form">
@@ -20,17 +20,6 @@
                 Looks good!
                 </div>
             </div>
-            <!-- <div class="mb-3">
-                <label for="image" class="form-label">Upload images</label>
-                <input class="form-control" type="file" id="image" name="image" multiple>
-            </div> -->
-            <!-- <div class="mb-3">
-                <label class="form-label" for="image">Image Url</label>
-                <input class="form-control" type="text" id="image" name="campground[image]" required>
-                <div class="valid-feedback">
-                    Looks good!
-                </div>
-            </div> -->
             <div class="mb-3">
                 <button class="btn btn-success">Create Card Set</button>
             </div>

@@ -3,7 +3,7 @@
     <h1 class="text-center">
         Edit Card Set
     </h1>
-    <div class="col-md-6">
+    <div class="col-md-6 mb-4">
         <!-- need to change form type to enctype="multipart/form-data" if you want to include image upload -->
         <form action="/cardSets/<%= cardSet._id%>?_method=PUT" method="POST" novalidate class="validated-form">
         <div class="mb-3">
@@ -28,42 +28,51 @@
     </form>
     
     </div>
+
+
     <div class="row justify-content-center">
-        <% if(currentUser && cardSet.author.equals(currentUser._id)) { %>
-            <% for(let card of cardSet.cards) { %>
-            <div class="card col-lg-10 mb-3 p-2">
-                <div class="row justify-content-center">
-                    <div class="col-auto">
-                        <form action="/cardSets/<%= cardSet._id%>/cards/<%=card._id%>?_method=PUT" method="POST" novalidate class="validated-form" id="update-form">
-                        <label class="col-form-label" for="front">Front:</label>
-                    </div>
-                    <div class="col-3">
-                        <input class="form-control" type="text" id="front" name="card[front]" value="<%=card.front%>" required>
-                        <!-- <div class="valid-feedback">
-                            Looks good!
-                        </div> -->
-                    </div>
-                    <div class="col-auto">
-                        <label class="col-form-label" for="back">Back:</label>
-                    </div>
-                    <div class="col-3">
-                        <input class="form-control" type="text" id="back" name="card[back]" value="<%=card.back%>" required>
-                        <!-- <div class="valid-feedback">
-                            Looks good!
-                        </div> -->
-                    </div>
-                    <div class="col-auto">
-                        <button class="btn btn-info">Update card</button>
-                        </form>
-                    </div>
-                    <div class="col-auto">
-                        <form action="/cardSets/<%=cardSet._id%>/cards/<%=card._id%>?_method=DELETE" method="POST" id="delete-form">
+        <% for(let card of cardSet.cards) { %>
+        <div class="card col-lg-8 mb-3 p-2">
+            <div class="d-flex row justify-content-center align-items-center text-group">
+                <div class="col-3">
+                    <div class="front">Front: <%=card.front%></div>
+                </div>
+                <div class="col-3">
+                    <div class="back">Back: <%=card.back%></div>
+                </div>
+                <div class="col-auto">
+                    <button class="btn btn-info btn-edit">Edit</button>
+                </div>
+                <div class="col-auto">
+                    <form action="/cardSets/<%=cardSet._id%>/cards/<%=card._id%>?_method=DELETE" method="POST" id="delete-form">
                         <button class="btn btn-danger">Delete</button>
-                        </form>
-                    </div>
+                    </form>
                 </div>
             </div>
-            <% } %>
+            <div class="row justify-content-center form-group d-none">
+                <div class="col-auto">
+                    <form action="/cardSets/<%= cardSet._id%>/cards/<%=card._id%>?_method=PUT" method="POST" novalidate class="validated-form" id="update-form">
+                    <label class="col-form-label" for="front">Front:</label>
+                </div>
+                <div class="col-md-3">
+                    <input class="form-control" type="text" id="front" name="card[front]" value="<%=card.front%>" required>
+                </div>
+                <div class="col-auto">
+                    <label class="col-form-label" for="back">Back:</label>
+                </div>
+                <div class="col-md-3">
+                    <input class="form-control" type="text" id="back" name="card[back]" value="<%=card.back%>" required>
+                </div>
+                <div class="col-auto">
+                    <button class="btn btn-info">Update Card</button>
+                    </form>
+                </div>
+                <div class="col-auto">
+                    <button class="btn btn-success btn-exitedit">Exit</button>
+                </div>
+            </div>
+        </div>
         <% } %>
     </div>
-</div>
+
+<script src="/javascripts/toggleEditCard.js"></script>
