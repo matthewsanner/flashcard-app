@@ -30,7 +30,7 @@
     <% } %>
     <div class="row justify-content-center">
         <div class="col-lg-8 mb-3">
-            <div class="card">
+            <div class="card cardset-info">
                 <div class="card-body">
                     <h5 class="card-title"><%= cardSet.title %></h5>
                     <div class="card-text"><%= cardSet.description %></div>
@@ -52,7 +52,7 @@
     </div>
     <% if(currentUser && cardSet.author.equals(currentUser._id)) { %>
     <div class="row justify-content-center create-card">
-        <div class="col-lg-8 card mb-3 p-2">
+        <div class="col-lg-8 card mb-3 p-2 cardset-info">
             <form class="validated-form row justify-content-center" action="/cardSets/<%=cardSet._id%>/cards" method="POST" novalidate>
                 <div class="col-md-3">
                     <input type="text" class="form-control" name="card[front]" placeholder="Front">

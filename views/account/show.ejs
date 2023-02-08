@@ -6,7 +6,7 @@
     <% cardSets.forEach(function(cardSet) {%>
     <div class="row">
         <div class="col-lg-6">
-            <div class="card mb-3">
+            <div class="card cardset-info mb-3">
                 <div class="card-body">
                     <h5 class="card-title">
                         <%= cardSet.title %>
@@ -14,7 +14,7 @@
                     <p class="card-text">
                         <%= cardSet.description %>
                     </p>
-                    <a class="btn btn-primary" href="/cardSets/<%= cardSet._id %>">View Set</a>
+                    <a class="btn btn-info" href="/cardSets/<%= cardSet._id %>">View Set</a>
                 </div>
             </div>
         </div>

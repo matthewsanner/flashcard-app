@@ -87,7 +87,9 @@ const styleSrcUrls = [
 ];
 const connectSrcUrls = [];
 const fontSrcUrls = [
-    "https://cdn.jsdelivr.net"
+    "https://cdn.jsdelivr.net",
+    "https://fonts.googleapis.com",
+    "https://fonts.gstatic.com"
 ];
 app.use(
     helmet.contentSecurityPolicy({
