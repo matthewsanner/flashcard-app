@@ -20,10 +20,6 @@ body {
     font-family: 'Rubik', sans-serif;
 }
 
-.cardset-info {
-    border-color: black;
-}
-
 .flash-message.fade-out {
     opacity: 0;
     transition: opacity 0.5s ease-in-out;

@@ -8,7 +8,7 @@
     <% for (let cardSet of cardSets) {%>
     <div class="row">
         <div class="col-lg-6">
-            <div class="card cardset-info mb-3">
+            <div class="card shadow mb-3">
                 <div class="card-body">
                     <h5 class="card-title">
                         <%= cardSet.title %>
@@ -25,5 +25,5 @@
 </div>
 
 <script>
-    const cardSets = <% - JSON.stringify(cardSets) %>
+    const cardSets = <%- JSON.stringify(cardSets) %>
 </script>
