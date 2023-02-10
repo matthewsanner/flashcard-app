@@ -21,7 +21,7 @@ const cardSetRoutes = require('./routes/cardSets');
 const cardRoutes = require('./routes/cards');
 const accountRoutes = require('./routes/account')
 
-const dbUrl = process.env.DB_URL || 'mongodb://localhost:27017/flashcard-app';
+const dbUrl = process.env.DB_URL;
 mongoose.connect(dbUrl);
 
 const db = mongoose.connection;
@@ -139,7 +139,7 @@ app.use((err, req, res, next) => {
     res.status(statusCode).render('error', { err });
 })
 
-const port = process.env.PORT || 3000;
+const port = process.env.PORT;
 app.listen(port, () => {
     console.log(`Serving on port ${port}!`)
 })
