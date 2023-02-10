@@ -33,7 +33,7 @@ module.exports.login = (req, res) => {
 }
 
 module.exports.logout = (req, res) => {
-    req.logout(/*{ keepSessionInfo: true }, */err => {
+    req.logout(err => {
         if (err) return next(err);
         req.flash('success', 'Logged out!');
         const redirectUrl = res.locals.returnTo || '/cardSets';

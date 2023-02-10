@@ -2,6 +2,38 @@
     display: none;
 }
 
+.navbar {
+    background-color: #2649bc;
+}
+
+.footer {
+    background-color: #2649bc;
+    color: #fffbfb;
+}
+
+.navbar-brand {
+    font-family: 'Calistoga', cursive;
+    font-size: 1.5em;
+}
+
+body {
+    font-family: 'Rubik', sans-serif;
+}
+
+.cardset-info {
+    border-color: black;
+}
+
+.flash-message.fade-out {
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+}
+
+.bi {
+    font-size: 2.5em;
+    cursor: pointer;
+}
+
 .flashcard {
     display: flex;
     text-align: center;
@@ -28,12 +60,12 @@
     height: 100%;
     top: 0;
     left: 0;
-    font-family: 'Merriweather', serif;
 }
 
 .flashcard-text {
     font-size: 3em;
     text-align: center;
+    font-family: 'Merriweather', serif;
 }
 
 .flashcard-front {
@@ -52,11 +84,6 @@
     transform: rotateY(0deg);
 }
 
-.bi {
-    font-size: 2.5em;
-    cursor: pointer;
-}
-
 @media (max-width: 767px) {
     .form-group button {
         margin-top: 10px;
@@ -67,110 +94,4 @@
     .create-card button {
         margin-top: 10px;
     }
-}
-
-.flash-message.fade-out {
-    opacity: 0;
-    transition: opacity 0.5s ease-in-out;
-}
-
-.navbar {
-    background-color: #2649bc;
-}
-
-.footer {
-    background-color: #2649bc;
-    color: #fffbfb;
-}
-
-/* :root {
-    --bs-body-bg: #eaf2ea;
-} */
-
-/* .btn-custom-info {
-    background-color: #5bc0de;
-    border-color: #46b8da;
-    color: #fff;
-}
-
-.btn-custom-danger {
-    background-color: #d9534f;
-    border-color: #d43f3a;
-    color: #fff;
-}
-
-.btn-custom-success {
-    background-color: #5cb85c;
-    border-color: #4cae4c;
-    color: #fff;
-} */
-
-/* .btn-info {
-    background-color: #5bc0de;
-    border-color: #46b8da;
-    color: #fff;
-}
-
-.btn-info:hover {
-    background-color: #39b3d7;
-    border-color: #269abc;
-    color: #fff;
-}
-
-.btn-info:active,
-.btn-info.active {
-    background-color: #269abc;
-    border-color: #1b6d85;
-    color: #fff;
-}
-
-.btn-danger {
-    background-color: #d9534f;
-    border-color: #d43f3a;
-    color: #fff;
-}
-
-.btn-danger:hover {
-    background-color: #c9302c;
-    border-color: #ac2925;
-    color: #fff;
-}
-
-.btn-danger:active,
-.btn-danger.active {
-    background-color: #ac2925;
-    border-color: #7a1c1a;
-    color: #fff;
-}
-
-.btn-success {
-    background-color: #5cb85c;
-    border-color: #4cae4c;
-    color: #fff;
-}
-
-.btn-success:hover {
-    background-color: #47a447;
-    border-color: #398439;
-    color: #fff;
-}
-
-.btn-success:active,
-.btn-success.active {
-    background-color: #398439;
-    border-color: #2d672d;
-    color: #fff;
-} */
-
-.navbar-brand {
-    font-family: 'Calistoga', cursive;
-    font-size: 1.5em;
-}
-
-body {
-    font-family: 'Rubik', sans-serif;
-}
-
-.cardset-info {
-    border-color: black;
 }

@@ -1,5 +1,4 @@
 const CardSet = require('../models/cardSet');
-// const { cloudinary } = require('../cloudinary');
 
 module.exports.index = async (req, res) => {
     const cardSets = await CardSet.find({});
@@ -12,7 +11,6 @@ module.exports.renderNewForm = (req, res) => {
 
 module.exports.createCardSet = async (req, res, next) => {
     const cardSet = new CardSet(req.body.cardSet);
-    // cardSet.images = req.files.map(f => ({ url: f.path, filename: f.filename }));
     cardSet.author = req.user._id;
     await cardSet.save();
     req.flash('success', 'Successfully made a new card set!')
@@ -20,10 +18,8 @@ module.exports.createCardSet = async (req, res, next) => {
 }
 
 module.exports.showCardSet = async (req, res) => {
-    const cardSet = await CardSet.findById(req.params.id).populate({
-        path: 'cards'
-        // populate: { path: 'author' }
-    })
+    const cardSet = await CardSet.findById(req.params.id)
+        .populate('cards')
         .populate('author');
     cardSet.cardCount = cardSet.cards.length;
     if (!cardSet) {

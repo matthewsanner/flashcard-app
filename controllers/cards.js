@@ -5,7 +5,6 @@ module.exports.createCard = async (req, res) => {
     const { id } = req.params
     const cardSet = await CardSet.findById(id);
     const card = new Card(req.body.card);
-    // card.author = req.user._id;
     cardSet.cards.push(card);
     await card.save();
     await cardSet.save();
@@ -16,13 +15,13 @@ module.exports.createCard = async (req, res) => {
 module.exports.deleteCard = async (req, res) => {
     const { id, cardId } = req.params;
     // Pull operator removes from an existing array all instances of a value or values matching a specified condition
+    // Must use it to remove reference to the card from the CardSet before it is deleted
     await CardSet.findByIdAndUpdate(id, { $pull: { cards: cardId } })
     await Card.findByIdAndDelete(cardId);
     req.flash('success', 'Successfully deleted card!')
     res.redirect(`/cardSets/${id}/edit`);
 }
 
-// new section for edit card
 module.exports.editCard = async (req, res) => {
     const { id, cardId } = req.params;
     await CardSet.findById(id);

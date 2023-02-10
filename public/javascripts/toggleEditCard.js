@@ -10,7 +10,7 @@ document.querySelectorAll('.btn-edit').forEach(function (btn) {
         card.classList.toggle('col-lg-10');
     });
 });
-document.querySelectorAll('.btn-exitedit').forEach(function (btn) {
+document.querySelectorAll('.btn-cancel').forEach(function (btn) {
     btn.addEventListener('click', function (e) {
         e.preventDefault();
         let form = e.target.closest('.card').querySelector('.form-group');

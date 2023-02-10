@@ -3,7 +3,7 @@
     <h1 class="text-center">
         Edit Card Set
     </h1>
-    <div class="col-md-6 mb-4">
+    <div class="col-lg-6 mb-4">
         <!-- need to change form type to enctype="multipart/form-data" if you want to include image upload -->
         <form action="/cardSets/<%= cardSet._id%>?_method=PUT" method="POST" novalidate class="validated-form">
         <div class="mb-3">
@@ -25,10 +25,8 @@
             <button class="btn btn-info">Update Card Info</button>
             <a class="btn btn-success ms-2" href="/cardSets/<%= cardSet._id%>">Back to Card Set</a>
         </div>
-    </form>
-    
+        </form>
     </div>
-
 
     <div class="row justify-content-center">
         <% for(let card of cardSet.cards) { %>
@@ -68,7 +66,7 @@
                     </form>
                 </div>
                 <div class="col-auto">
-                    <button class="btn btn-success btn-exitedit">Cancel</button>
+                    <button class="btn btn-success btn-cancel">Cancel</button>
                 </div>
             </div>
         </div>

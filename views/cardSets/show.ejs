@@ -22,8 +22,6 @@
             <div class="d-flex justify-content-center">
                 <i class="bi bi-caret-left" id="flashcard-backward"></i>
                 <i class="bi bi-caret-right" id="flashcard-forward"></i>
-                <!-- <button class="btn btn-success m-1" id="flashcard-backward">Previous card</button>
-                <button class="btn btn-success m-1" id="flashcard-forward">Next card</button> -->
             </div>
         </div>
     </div>
@@ -69,13 +67,7 @@
     <% } %>
 </div>
 
-<!-- <script>
-    function removeValidatedForm() {
-        document.getElementById("update-delete-form").classList.remove("validated-form");
-    }
-</script> -->
 <script>
     const cardSet = <%- JSON.stringify(cardSet) %>
 </script>
-<!-- <script src="/javascripts/addNewCardForm.js"></script> -->
 <script src="/javascripts/flashcard.js"></script>

@@ -26,10 +26,8 @@ const Joi = BaseJoi.extend(extension)
 module.exports.cardSetSchema = Joi.object({
     cardSet: Joi.object({
         title: Joi.string().required().escapeHTML(),
-        // image: Joi.string().required(),
         description: Joi.string().required().escapeHTML()
     }).required(),
-    // deleteImages: Joi.array()
 });
 
 module.exports.cardSchema = Joi.object({

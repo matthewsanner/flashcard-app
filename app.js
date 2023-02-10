@@ -21,7 +21,7 @@ const cardSetRoutes = require('./routes/cardSets');
 const cardRoutes = require('./routes/cards');
 const accountRoutes = require('./routes/account')
 
-const dbUrl = 'mongodb://localhost:27017/flashcard-app';
+const dbUrl = process.env.DB_URL || 'mongodb://localhost:27017/flashcard-app';
 mongoose.connect(dbUrl);
 
 const db = mongoose.connection;
@@ -41,7 +41,7 @@ app.use(methodOverride('_method'));
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(mongoSanitize());
 
-const secret = 'thisshouldbeabettersecret';
+const secret = process.env.SECRET;
 
 const store = new MongoStore({
     mongoUrl: dbUrl,
@@ -54,7 +54,7 @@ store.on('error', function (e) {
 })
 
 const sessionConfig = {
-    store: store, // or just store
+    store: store,
     name: 'session',
     secret,
     resave: false,
@@ -64,7 +64,6 @@ const sessionConfig = {
         httpOnly: true,
         // you want this setting for shtml but doesn't work on local server
         // secure: true,
-        // time in milliseconds
         expires: Date.now() + 1000 * 60 * 60 * 24 * 7,
         maxAge: 1000 * 60 * 60 * 24 * 7
     }
@@ -85,7 +84,9 @@ const styleSrcUrls = [
     "https://use.fontawesome.com/",
     "https://cdn.jsdelivr.net"
 ];
-const connectSrcUrls = [];
+const imgSrcUrls = [
+    "https://res.cloudinary.com/"
+];
 const fontSrcUrls = [
     "https://cdn.jsdelivr.net",
     "https://fonts.googleapis.com",
@@ -95,12 +96,12 @@ app.use(
     helmet.contentSecurityPolicy({
         directives: {
             defaultSrc: [],
-            connectSrc: ["'self'", ...connectSrcUrls],
+            connectSrc: ["'self'"],
             scriptSrc: ["'unsafe-inline'", "'self'", ...scriptSrcUrls],
             styleSrc: ["'self'", "'unsafe-inline'", ...styleSrcUrls],
             workerSrc: ["'self'", "blob:"],
             objectSrc: [],
-            imgSrc: ["'self'", "blob:", "data:"],
+            imgSrc: ["'self'", "blob:", "data:", ...imgSrcUrls],
             fontSrc: ["'self'", ...fontSrcUrls],
         },
     })
