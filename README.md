@@ -8,6 +8,7 @@ Features:
 - authorization and authentication
 - full CRUD
 - sessions
+- web security
 
 Tech:
 - HTML, CSS, JS
