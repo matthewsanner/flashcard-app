@@ -12,14 +12,14 @@ const methodOverride = require('method-override');
 const passport = require('passport');
 const LocalStrategy = require('passport-local');
 const User = require('./models/user');
-const helmet = require('helmet')
+const helmet = require('helmet');
 const mongoSanitize = require('express-mongo-sanitize');
 const MongoStore = require('connect-mongo');
 
 const userRoutes = require('./routes/users');
 const cardSetRoutes = require('./routes/cardSets');
 const cardRoutes = require('./routes/cards');
-const accountRoutes = require('./routes/account')
+const accountRoutes = require('./routes/account');
 
 const dbUrl = process.env.DB_URL;
 mongoose.connect(dbUrl);
@@ -47,11 +47,11 @@ const store = new MongoStore({
     mongoUrl: dbUrl,
     secret,
     touchAfter: 24 * 60 * 60 // doesn't update db if same for amount of seconds
-})
+});
 
 store.on('error', function (e) {
     console.log('Session store error', e)
-})
+});
 
 const sessionConfig = {
     store: store,
@@ -67,9 +67,9 @@ const sessionConfig = {
         expires: Date.now() + 1000 * 60 * 60 * 24 * 7,
         maxAge: 1000 * 60 * 60 * 24 * 7
     }
-}
+};
 
-app.use(session(sessionConfig))
+app.use(session(sessionConfig));
 app.use(flash());
 
 const scriptSrcUrls = [
@@ -109,7 +109,7 @@ app.use(
 
 app.use(passport.initialize());
 app.use(passport.session());
-passport.use(new LocalStrategy(User.authenticate()))
+passport.use(new LocalStrategy(User.authenticate()));
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
@@ -118,28 +118,28 @@ app.use((req, res, next) => {
     res.locals.success = req.flash('success');
     res.locals.error = req.flash('error');
     next();
-})
+});
 
-app.use('/', userRoutes)
+app.use('/', userRoutes);
 app.use('/cardSets', cardSetRoutes);
 app.use('/cardSets/:id/cards', cardRoutes);
-app.use('/account', accountRoutes)
+app.use('/account', accountRoutes);
 
 app.get('/', (req, res) => {
     res.render('home')
-})
+});
 
 app.all('*', (req, res, next) => {
     next(new ExpressError('Page Not Found', 404))
-})
+});
 
 app.use((err, req, res, next) => {
     const { statusCode = 500 } = err;
     if (!err.message) err.message = 'Oh no, something went wrong!'
     res.status(statusCode).render('error', { err });
-})
+});
 
 const port = process.env.PORT;
 app.listen(port, () => {
     console.log(`Serving on port ${port}!`)
-})
+});
