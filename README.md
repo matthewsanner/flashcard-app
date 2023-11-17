@@ -1,4 +1,4 @@
-# ✨Flashy- A friendly Flashcard app 📝
+# ✨ Flashy- A friendly Flashcard app 📝
 
 ## Overview
 
