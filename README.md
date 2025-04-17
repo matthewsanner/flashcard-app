@@ -1,6 +1,6 @@
 # ✨ Flashy- A friendly Flashcard app 📝
 
-## Live demo
+## Live Demo
 
 Check out the live demo at [https://flashy-vgut.onrender.com/](https://flashy-vgut.onrender.com/). **Note:** It takes about 20 seconds to spin up.
 
