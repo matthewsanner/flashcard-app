@@ -1,5 +1,10 @@
 # ✨ Flashy- A friendly Flashcard app 📝
 
+## Live demo
+
+Check out the live demo at [https://flashy-vgut.onrender.com/](https://flashy-vgut.onrender.com/). **Note:** It takes about 20 seconds to spin up.
+
+
 ## Overview
 
 Flashy is an app for learners to create simple flashcards and organize them in sets to help with memorization and recall for language learning or any other type of learning or testing. As a Spanish learner myself, I made it to help me with vocabulary, but also to show that I can make a full-stack app that's both functional and aesthetic.
