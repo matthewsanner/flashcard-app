@@ -34,7 +34,6 @@ body {
     display: flex;
     text-align: center;
     height: 250px;
-    line-height: 250px;
     perspective: 1000px;
     position: relative;
     cursor: pointer;
@@ -56,12 +55,25 @@ body {
     height: 100%;
     top: 0;
     left: 0;
+    padding: 20px;
+    box-sizing: border-box;
 }
 
 .flashcard-text {
     font-size: 3em;
     text-align: center;
     font-family: 'Merriweather', serif;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    word-break: break-word;
+    hyphens: auto;
+    width: 100%;
+    max-width: 100%;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1.2;
 }
 
 .flashcard-front {
