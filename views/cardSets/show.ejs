@@ -53,10 +53,10 @@
         <div class="col-lg-8 card shadow mb-3 p-2">
             <form class="validated-form row justify-content-center" action="/cardSets/<%=cardSet._id%>/cards" method="POST" novalidate>
                 <div class="col-md-3">
-                    <input type="text" class="form-control" name="card[front]" placeholder="Front" maxlength="100" autofocus>
+                    <input type="text" class="form-control" name="card[front]" placeholder="Front" maxlength="65" autofocus>
                 </div>
                 <div class="col-md-3">
-                    <input type="text" class="form-control" name="card[back]" placeholder="Back" maxlength="100">
+                    <input type="text" class="form-control" name="card[back]" placeholder="Back" maxlength="65">
                 </div>
                 <div class="col-auto">
                     <button class="btn btn-success" id="add-card-btn">Create a card</button> 
