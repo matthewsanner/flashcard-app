@@ -1,10 +1,15 @@
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const CardSchema = new Schema({
-    front: String,
-    back: String,
+  front: {
+    type: String,
+    maxlength: 150,
+  },
+  back: {
+    type: String,
+    maxlength: 150,
+  },
 });
 
-module.exports = mongoose.model('Card', CardSchema);
-
+module.exports = mongoose.model("Card", CardSchema);
