@@ -4,11 +4,11 @@ const Schema = mongoose.Schema;
 const CardSchema = new Schema({
   front: {
     type: String,
-    maxlength: 150,
+    maxlength: 100,
   },
   back: {
     type: String,
-    maxlength: 150,
+    maxlength: 100,
   },
 });
 

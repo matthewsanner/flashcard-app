@@ -33,7 +33,7 @@ module.exports.cardSetSchema = Joi.object({
 
 module.exports.cardSchema = Joi.object({
   card: Joi.object({
-    front: Joi.string().required().max(150).escapeHTML(),
-    back: Joi.string().required().max(150).escapeHTML(),
+    front: Joi.string().required().max(100).escapeHTML(),
+    back: Joi.string().required().max(100).escapeHTML(),
   }).required(),
 });
